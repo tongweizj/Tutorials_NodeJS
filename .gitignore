@@ -1,0 +1,13 @@
+.DS_Store
+# Editor settings
+.vscode
+# Nuxt dev/build outputs
+.output
+.nuxt
+# Nuxt generate
+dist
+# Node dependencies
+node_modules
+# System files
+*.log
+npm-debug.log
