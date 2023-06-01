@@ -11,3 +11,4 @@ node_modules
 # System files
 *.log
 npm-debug.log
+.env
