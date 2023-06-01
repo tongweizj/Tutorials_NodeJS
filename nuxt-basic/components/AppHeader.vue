@@ -3,7 +3,7 @@
     <div class="flex flex-col container mx-auto md:flex-row md:items-center md:justify-between">
       <div class="flex justify-between items-center">
         <div>
-          <a class="text-gray-800 font-medium md:text-2xl" href="#">NewsApi<span class="text-blue-500">Demo</span></a>
+          <a class="text-gray-800 font-medium md:text-l" href="#">NewsApi<span class="text-blue-500">Demo</span></a>
         </div>
         <div>
           <button type="button" @click="isOpen = !isOpen"
@@ -16,10 +16,8 @@
         </div>
       </div>
       <div class="flex flex-col md:flex-row md:-mx-4" :class="isOpen ? 'block' : ['hidden', 'md:block']">
-        <a class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" href="#">Home</a>
+        <a class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" href="/">Home</a>
         <NuxtLink class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" to="/tags/nodejs">NodeJs</NuxtLink>
-        <a class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" href="#"> txt </a>
-        <a class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" href="#">About us</a>
       </div>
     </div>
   </nav>

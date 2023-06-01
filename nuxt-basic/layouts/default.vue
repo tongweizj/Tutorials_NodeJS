@@ -11,10 +11,3 @@
     <AppFooter />
   </div>
 </template>
-<style>
-body {
-  max-width: 640px;
-  margin-left: auto;
-  margin-right: auto;
-}
-</style>
