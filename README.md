@@ -12,3 +12,4 @@
 
 01 - 基于 **newsapi** 在localhost环境可以正常运行的简单新闻列表网站
 02 - 在01的基础上，使用`composables`模块，将data fetch 代码从page页面剥离出来
+03 - 增加状态管理库pinia，ui层实现翻页功能
