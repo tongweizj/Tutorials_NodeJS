@@ -1,29 +1,24 @@
 # Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## New Feature
 
-## Setup
+- Nuxt
+  - composebles
+  - pinia
+
+## Setup and Development Server
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
 
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
+# start 
 npm run dev
 ```
+
+Start the development server on `http://localhost:3000`
 
 ## Production
 
@@ -43,6 +38,7 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 ## 资源
 
+- [pinia](https://pinia.vuejs.org/)
 - [tailwind css blog templte](https://github.com/merakiui/blog-page-example/)
 - [vuejs-newsapireader](https://github.com/webnoobcodes/vuejs-newsapireader)
 - [nuxt-3-server-api](https://github.com/BayBreezy/nuxt-3-server-api/blob/main/composables/bookStore.ts)

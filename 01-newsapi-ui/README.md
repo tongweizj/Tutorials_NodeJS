@@ -1,29 +1,29 @@
 # Nuxt 3 Minimal Starter
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Feature
 
-## Setup
+- Nuxt
+  - layout
+  - page
+  - componet
+  - page send data to componet
+  - env
+- tailwind CSS
+
+
+## Setup and Development Server
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
 
-# pnpm
-pnpm install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
+# start 
 npm run dev
 ```
+
+Start the development server on `http://localhost:3000`
 
 ## Production
 
@@ -41,7 +41,10 @@ npm run preview
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
 
+
+
 ## 资源
 
 - [tailwind css blog templte](https://github.com/merakiui/blog-page-example/)
 - [vuejs-newsapireader](https://github.com/webnoobcodes/vuejs-newsapireader)
+- Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
