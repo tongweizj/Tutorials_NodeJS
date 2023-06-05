@@ -1,9 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-export default {
-  server: {
-    host: '0.0.0.0', // 修改成这个就可以适配所有网卡了
-    port: 3000, // 这里修改端口
-  },
+export default defineNuxtConfig({
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -18,7 +14,6 @@ export default {
       },
     },
   },
-  buildModules: ['@nuxtjs/eslint-module'],
   routeRules: {
     // Add cors headers
     '/**': { cors: true },
@@ -30,4 +25,13 @@ export default {
       apiBase: '', // can be overridden by NUXT_PUBLIC_API_BASE environment variable
     },
   },
-}
+  modules: [
+    '@pinia/nuxt',
+  ],
+  imports: {
+    dirs: ['./stores'],
+  },
+  pinia: {
+    autoImports: ['defineStore', 'acceptHMRUpdate'],
+  },
+})

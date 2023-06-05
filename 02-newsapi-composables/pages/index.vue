@@ -1,10 +1,11 @@
 <template>
   <div>
-    <List :posts="data.articles" />
+    <List :posts="news.posts['topnews']" />
   </div>
 </template>
 
 <script setup>
 const config = useRuntimeConfig()
-const data = await newsTop(config.public['newsKey'])
+const news = useNewsStore()
+news.fetchTopNews(config.public['newsKey'])
 </script>

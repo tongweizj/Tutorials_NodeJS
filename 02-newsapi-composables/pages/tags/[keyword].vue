@@ -1,12 +1,14 @@
 <template>
   <div>
-    <List :posts="data.articles" />
+    <List :posts="news.posts[keyword]" />
   </div>
 </template>
 
 <script setup>
 const config = useRuntimeConfig()
 const route = useRoute()
+const news = useNewsStore()
+
 const keyword = ref(route.params.keyword)
-const data = await newsTag(config.public['newsKey'], keyword.value)
+news.fetchTagNews(config.public['newsKey'], keyword.value)
 </script>

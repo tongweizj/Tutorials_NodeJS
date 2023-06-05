@@ -15,8 +15,8 @@
           </button>
         </div>
       </div>
-      <div class="flex flex-col md:flex-row md:-mx-4" :class="isOpen ? 'block' : ['hidden', 'md:block']">
-        <a class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" href="/">Home</a>
+      <div class="flex flex-col md:flex-row md:-mx-4">
+        <NuxtLink class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" href="/">Home</NuxtLink>
         <NuxtLink class="my-1 text-gray-800 hover:text-blue-500 md:mx-4 md:my-0" to="/tags/nodejs">NodeJs</NuxtLink>
       </div>
     </div>

@@ -6,12 +6,22 @@
   - composebles
   - pinia
 
+详细说明
+
+- 将newsApi fethc 代码，合拢到 `/composables/newsapi.ts`
+- 使用pinia保存新闻内容，减少newsapi到调用。
+- newsapi调用逻辑
+  - 查看state 是否包含newsapi 数据 && 是否过期（30分钟）
+  - if 数据 == undefined || 超时，调用api
+
 ## Setup and Development Server
 
 Make sure to install the dependencies:
 
 ```bash
 # npm
+npm install pinia @pinia/nuxt
+npm i pinia -f
 npm install
 
 # start 
