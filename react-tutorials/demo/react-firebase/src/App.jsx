@@ -15,58 +15,64 @@ import {
 import { countCollection, db } from "./firebase";
 
 function App() {
-  const [count, setCount] = useState(-1);
-  const [countID, setCountID] = useState(0);
+  const [count, setCount] = useState();
+  const [countID, setCountID] = useState("");
+  const [tempCount, setTempCount] = useState();
+
+  useEffect(() => {
+    // 从firebases同步 count，countID
+    readFromFB();
+  }, []);
+
+  useEffect(() => {
+    // 监控，count，变了就同步到temp
+    setTempCount(count);
+  }, [count]);
+
+  useEffect(() => {
+    // 监控，tempCount，变了就同步到firebase
+    update2FB(tempCount);
+  }, [tempCount]);
 
   // 读取最后一次创建的记数器
   function readFromFB() {
     console.log("readFromFB");
     onSnapshot(countCollection, function (snapshot) {
       const counter = snapshot.docs[snapshot.docs.length - 1];
-      setCount(() => counter.data().value);
-      setCountID(() => counter.id);
+      console.log("counter:", counter);
+      if (counter != undefined) {
+        setCount(() => counter.data().value);
+        setCountID(() => counter.id);
+      }
     });
-    console.log("count:", count);
-    console.log(countID);
   }
 
   // 给数字 +1， 同步到firebase
-  async function update2FB() {
+  async function update2FB(temp) {
     console.log("update2FB");
-    // 同步到firebases
-    await setDoc(doc(countCollection, countID), {
-      value: count + 1,
-    });
-    setCount((count) => count + 1);
+    const counterRef = doc(db, "count", countID);
+    console.log("tempCount :", temp);
+    console.log(typeof temp);
+    setDoc(counterRef, { value: temp }, { merge: true });
   }
 
   // 创建新的计数器
-  // async function create2FB() {
-  //   console.log("create2FB");
-  //   const newCount = {
-  //     value: 0,
-  //   };
+  async function create2FB() {
+    console.log("create2FB");
+    const newCount = {
+      value: 0,
+    };
 
-  //   const newCountRef = await addDoc(countCollection, newCount);
-  //   console.log(newCountRef.id);
-  //   setCountID(() => newCountRef.id);
-
-  //   const docRef = doc(db, "count", countID);
-  //   const docSnap = await getDoc(docRef);
-  //   if (docSnap.exists()) {
-  //     console.log("Document data:", docSnap.data());
-  //     setCount(() => docSnap.value);
-  //   } else {
-  //     // docSnap.data() will be undefined in this case
-  //     console.log("No such document!");
-  //   }
-  // }
-  function delete2FB() {
-    console.log("delete2FB");
+    const counter = await addDoc(countCollection, newCount);
+    console.log(counter);
+    setCountID(() => counter.id);
+    setCount(() => 0);
   }
-  // useEffect(() => {
-  //   readFromFB();
-  // }, []);
+  async function delete2FB() {
+    console.log("delete2FB");
+    const counterRef = doc(db, "count", countID);
+    await deleteDoc(counterRef);
+  }
 
   return (
     <>
@@ -80,10 +86,11 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        {/* <button onClick={() => setCount((count) => count + 1)}> */}
-        {/* count is {count}
-        </button> */}
-        <span> count is {count}</span>
+        {count != undefined ? (
+          <span> count is {tempCount}</span>
+        ) : (
+          <span>please create a counter!</span>
+        )}
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -93,12 +100,12 @@ function App() {
         <button className="fbBtn" onClick={readFromFB}>
           read
         </button>
-        <button className="fbBtn" onClick={update2FB}>
+        <button className="fbBtn" onClick={() => setTempCount(tempCount + 1)}>
           count + 1
         </button>
-        {/* <button className="fbBtn" onClick={create2FB}>
+        <button className="fbBtn" onClick={create2FB}>
           create
-        </button> */}
+        </button>
 
         <button className="fbBtn" onClick={delete2FB}>
           delete
