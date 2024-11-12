@@ -1,4 +1,4 @@
-# Nuxt.JS 3 Tutorials
+# Tutorials NodeJS
 
 这个项目是用来记录我在学习 Nuxt.JS 3 过程当中，使用到的核心功能和插件。
 每一个小项目都着重于几个功能点，争取从无到有，从简到难，一点点将Nuxt的技术学透，用好！
