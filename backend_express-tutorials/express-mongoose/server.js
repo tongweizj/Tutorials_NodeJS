@@ -1,60 +1,44 @@
-'use strict';
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
-/*
- * nodejs-express-mongoose-demo
- * Copyright(c) 2013 Madhusudhan Srinivasa <madhums8@gmail.com>
- * MIT Licensed
- */
-
-/**
- * Module dependencies
- */
-
-require('dotenv').config();
-
-const fs = require('fs');
-const join = require('path').join;
-const express = require('express');
-const mongoose = require('mongoose');
-const passport = require('passport');
-const config = require('./config');
-
-const models = join(__dirname, 'app/models');
-const port = process.env.PORT || 3000;
 const app = express();
 
-/**
- * Expose
- */
+var corsOptions = {
+  origin: "http://localhost:8081"
+};
 
-module.exports = app;
+app.use(cors(corsOptions));
 
-// Bootstrap models
-fs.readdirSync(models)
-  .filter(file => ~file.search(/^[^.].*\.js$/))
-  .forEach(file => require(join(models, file)));
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
 
-// Bootstrap routes
-require('./config/passport')(passport);
-require('./config/express')(app, passport);
-require('./config/routes')(app, passport);
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
-connect();
-
-function listen() {
-  if (app.get('env') === 'test') return;
-  app.listen(port);
-  console.log('Express app started on port ' + port);
-}
-
-function connect() {
-  mongoose.connection
-    .on('error', console.log)
-    .on('disconnected', connect)
-    .once('open', listen);
-  return mongoose.connect(config.db, {
-    keepAlive: 1,
+const db = require("./app/models");
+db.mongoose
+  .connect(db.url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Connected to the database!");
+  })
+  .catch(err => {
+    console.log("Cannot connect to the database!", err);
+    process.exit();
   });
-}
+
+// simple route
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to bezkoder application." });
+});
+
+require("./app/routes/turorial.routes")(app);
+
+// set port, listen for requests
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
+});
