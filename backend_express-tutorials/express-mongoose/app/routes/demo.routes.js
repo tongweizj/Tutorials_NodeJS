@@ -1,8 +1,8 @@
 module.exports = app => {
-  const tutorials = require("../controllers/tutorial.controller.js");
+  const tutorials = require("../controllers/demo.controller.js");
 
   var router = require("express").Router();
-  console.log('hello rounter');
+  console.log('hello demo rounter');
   // Create a new Tutorial
   router.post("/", tutorials.create);
 
@@ -24,5 +24,5 @@ module.exports = app => {
   // Create a new Tutorial
   router.delete("/", tutorials.deleteAll);
 
-  app.use("/api/tutorials", router);
+  app.use("/api/demo", router);
 };
