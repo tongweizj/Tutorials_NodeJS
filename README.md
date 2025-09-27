@@ -1,12 +1,14 @@
 # Tutorials NodeJS
 
-这个项目是用来记录我在学习 Nuxt.JS 3 过程当中，使用到的核心功能和插件。
+这个项目是用来记录我在学习 NodeJS 过程当中，使用到的核心功能和插件。
 每一个小项目都着重于几个功能点，争取从无到有，从简到难，一点点将Nuxt的技术学透，用好！
 
-## 使用说明
-
-- 每个小项目都是一个完整的Nuxt项目，开盒即用
-- 使用说明，使用到的功能点，请看每个项目的readme
+## 目录结构
+0 nodejs的基础代码练习
+1 nodejs常用库
+2 常用框架
+3 数据库相关的应用
+4 demo 项目
 
 ## Tutorials
 
@@ -16,10 +18,6 @@
   - 增加状态管理库pinia，ui层实现翻页功能
 
 
-### React
+## 资源
 
-#### Demo
-
-- react-context-switch-theme
-  - switch dark light theme
-  - react context
+- React 相关的练习代码在 [这里](https://github.com/tongweizj/experiments_fullstack)
